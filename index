@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인천 방과후·돌봄</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        /* Iframe을 데스크탑 해상도로 렌더링한 후 카드 크기에 맞게 축소하는 트릭 */
+        .preview-container {
+            position: relative;
+            width: 100%;
+            padding-top: 60%; /* 비율 설정 (약 16:9 뷰) */
+            overflow: hidden;
+            background-color: #e5e7eb; /* 로딩 전 배경색 */
+        }
+
+        .preview-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400%; /* 부모 너비의 4배 (가상 데스크탑 해상도) */
+            height: 400%; /* 부모 높이의 4배 */
+            transform: scale(0.25); /* 1/4 크기로 축소하여 부모에 맞춤 */
+            transform-origin: 0 0;
+            border: none;
+            pointer-events: none; /* iframe 내부 클릭 방지, 부모 a태그 클릭 유도 */
+            transition: opacity 0.5s ease;
+        }
+
+        /* 호버 시 카드 부양 효과 부드럽게 */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="relative min-h-screen overflow-x-hidden text-gray-800">
+
+    <!-- 배경 장식 (모던한 그라데이션 원) -->
+    <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 z-[-1]"></div>
+    <div class="fixed top-[20%] right-[-10%] w-[30%] h-[50%] bg-purple-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 z-[-1]"></div>
+    <div class="fixed bottom-[-10%] left-[20%] w-[50%] h-[40%] bg-teal-100 rounded-full mix-blend-multiply filter blur-[120px] opacity-70 z-[-1]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        
+        <!-- 헤더 영역 -->
+        <header class="text-center mb-16 space-y-4">
+            <div class="inline-block p-3 bg-white/50 backdrop-blur-md rounded-2xl shadow-sm mb-2 border border-white/50">
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+            </div>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight drop-shadow-sm text-indigo-900">
+                인천 방과후·돌봄
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 font-medium max-w-2xl mx-auto">
+                이동하고자 하는 웹사이트의 미리보기를 클릭하여 즉시 접속하세요.
+            </p>
+        </header>
+
+        <!-- 사이트 카드 그리드 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- 1. SB Signal 카드 -->
+            <a href="https://sbsignal.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-hover group block bg-white/80 backdrop-blur-lg rounded-3xl overflow-hidden border border-white shadow-lg">
+                <!-- 미리보기 영역 -->
+                <div class="preview-container border-b border-gray-100 relative">
+                    <iframe src="https://sbsignal.vercel.app/" class="preview-iframe" title="SB Signal Preview" loading="lazy"></iframe>
+                    
+                    <!-- 호버 시 나타나는 오버레이 (방문하기 버튼) -->
+                    <div class="absolute inset-0 bg-gray-900/10 group-hover:bg-gray-900/40 transition-colors duration-300 flex items-center justify-center z-10 backdrop-blur-[1px] opacity-0 group-hover:opacity-100">
+                        <div class="bg-white text-blue-600 font-bold px-6 py-3 rounded-full shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                            <span>사이트 방문하기</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <!-- 텍스트 정보 영역 -->
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">서부돌봄신호등</h2>
+                    </div>
+                    <p class="text-gray-500 text-sm flex items-center gap-1.5 truncate">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                        https://sbsignal.vercel.app/
+                    </p>
+                </div>
+            </a>
+
+            <!-- 2. 인천 매니지먼트 카드 -->
+            <a href="https://icnmanagement.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-hover group block bg-white/80 backdrop-blur-lg rounded-3xl overflow-hidden border border-white shadow-lg">
+                <!-- 미리보기 영역 -->
+                <div class="preview-container border-b border-gray-100 relative">
+                    <iframe src="https://icnmanagement.vercel.app/" class="preview-iframe" title="ICN Management Preview" loading="lazy"></iframe>
+                    
+                    <!-- 호버 시 오버레이 -->
+                    <div class="absolute inset-0 bg-gray-900/10 group-hover:bg-gray-900/40 transition-colors duration-300 flex items-center justify-center z-10 backdrop-blur-[1px] opacity-0 group-hover:opacity-100">
+                        <div class="bg-white text-blue-600 font-bold px-6 py-3 rounded-full shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                            <span>사이트 방문하기</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <!-- 텍스트 정보 영역 -->
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">학생관리</h2>
+                    </div>
+                    <p class="text-gray-500 text-sm flex items-center gap-1.5 truncate">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                        https://icnmanagement.vercel.app/
+                    </p>
+                </div>
+            </a>
+
+            <!-- 3. 인천 늘봄 카드 -->
+            <a href="https://ineulbom.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-hover group block bg-white/80 backdrop-blur-lg rounded-3xl overflow-hidden border border-white shadow-lg md:col-span-2 lg:col-span-1">
+                <!-- 미리보기 영역 -->
+                <div class="preview-container border-b border-gray-100 relative">
+                    <iframe src="https://ineulbom.vercel.app/" class="preview-iframe" title="I-Neulbom Preview" loading="lazy"></iframe>
+                    
+                    <!-- 호버 시 오버레이 -->
+                    <div class="absolute inset-0 bg-gray-900/10 group-hover:bg-gray-900/40 transition-colors duration-300 flex items-center justify-center z-10 backdrop-blur-[1px] opacity-0 group-hover:opacity-100">
+                        <div class="bg-white text-blue-600 font-bold px-6 py-3 rounded-full shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                            <span>사이트 방문하기</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <!-- 텍스트 정보 영역 -->
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">인천늘봄현황</h2>
+                    </div>
+                    <p class="text-gray-500 text-sm flex items-center gap-1.5 truncate">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                        https://ineulbom.vercel.app/
+                    </p>
+                </div>
+            </a>
+
+        </div>
+        
+        <footer class="mt-20 text-center text-sm text-gray-400 font-medium">
+            <p>&copy; 2026 인천 방과후·돌봄. All rights reserved.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
