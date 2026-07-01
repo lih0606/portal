@@ -33,6 +33,7 @@
                             500: '#334e68',
                             800: '#102a43',
                             900: '#0a192f',
+                            primary: '#5c54f5' // 팝업창 포인트 컬러
                         }
                     },
                     animation: {
@@ -248,9 +249,112 @@
         <footer class="text-center text-sm text-slate-500 space-y-3 animate-fade-in-up delay-400 pt-4 border-t border-slate-200/50">
             <p>본 사이트는 개인이 운영하는 비공식 포털입니다. 문의 사항은 이메일(<a href="mailto:leeilhak@gmail.com" class="text-brand-500 hover:text-brand-800 hover:underline font-semibold transition-colors">leeilhak@gmail.com</a>)로 보내주시면 감사하겠습니다.</p>
             <div class="flex justify-center mt-3 opacity-80 hover:opacity-100 transition-opacity">
-                <img src="https://hits.sh/incheon-neulbom-portal.vercel.app.svg?style=for-the-badge&label=VISITORS&color=4f46e5" alt="방문자 수" class="h-6 rounded shadow-sm">
+                <!-- 방문자 뱃지에 이스터에그 트리거용 ID 추가 및 커서 스타일 변경 -->
+                <img id="easter-egg-trigger" src="https://hits.sh/incheon-neulbom-portal.vercel.app.svg?style=for-the-badge&label=VISITORS&color=4f46e5" alt="방문자 수" class="h-6 rounded shadow-sm cursor-pointer select-none">
             </div>
         </footer>
     </div>
+
+    <!-- 이스터에그(D-Day) 팝업 모달 -->
+    <div id="dday-popup" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-[24px] shadow-2xl p-8 max-w-[340px] w-full mx-4 text-center transform scale-95 transition-transform duration-300">
+            <!-- 캘린더 아이콘 -->
+            <div class="mx-auto flex items-center justify-center h-16 w-16 mb-4">
+                <i class="fa-solid fa-calendar-check text-5xl text-brand-primary"></i>
+            </div>
+            
+            <h2 class="text-2xl font-bold text-gray-800 mb-1">조금만 더 힘내세요!</h2>
+            <p class="text-[15px] text-gray-500 mb-4 font-medium">교사로 돌아가기까지</p>
+            
+            <!-- 남은 일자 (동적 렌더링) -->
+            <div class="mb-6 flex items-baseline justify-center gap-1.5">
+                <span id="dday-value" class="text-5xl font-black text-brand-primary tracking-tight">0</span>
+                <span class="text-lg text-gray-600 font-medium">일 남았습니다.</span>
+            </div>
+            
+            <!-- 확인 버튼 -->
+            <button id="close-popup" class="w-full bg-brand-primary hover:bg-[#4a42e5] text-white font-bold py-3.5 px-4 rounded-xl transition-colors shadow-md text-lg">
+                확인
+            </button>
+        </div>
+    </div>
+
+    <!-- 이스터에그 동작 자바스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const trigger = document.getElementById('easter-egg-trigger');
+            const popup = document.getElementById('dday-popup');
+            const closeBtn = document.getElementById('close-popup');
+            const ddayValue = document.getElementById('dday-value');
+            
+            let clickCount = 0;
+            let clickTimer = null;
+            
+            // 변경된 부분: 제한 시간 3초 (3000ms)
+            const CLICK_TIMEOUT = 3000; 
+
+            // 1. 배지 클릭 이벤트 처리
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                clickCount++;
+                
+                if (clickTimer) clearTimeout(clickTimer);
+                
+                // 5번 클릭 달성 시
+                if (clickCount >= 5) {
+                    showPopup();
+                    clickCount = 0; // 초기화
+                } else {
+                    // 제한 시간(3초) 내에 클릭하지 않으면 카운트 초기화
+                    clickTimer = setTimeout(() => {
+                        clickCount = 0;
+                    }, CLICK_TIMEOUT);
+                }
+            });
+
+            // 2. 팝업 노출 및 D-Day 계산 함수
+            function showPopup() {
+                // 목표 날짜 (2027년 3월 1일 자정 기준)
+                const targetDate = new Date('2027-03-01T00:00:00+09:00');
+                const now = new Date();
+                
+                // 남은 시간(밀리초)을 일(day) 단위로 변환
+                const diffTime = targetDate - now;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                // 팝업 안의 숫자에 반영
+                ddayValue.textContent = diffDays;
+
+                // 팝업 표시 애니메이션
+                popup.classList.remove('hidden');
+                
+                // 미세한 딜레이를 주어 transition이 작동하게 함
+                setTimeout(() => {
+                    popup.classList.remove('opacity-0');
+                    popup.firstElementChild.classList.remove('scale-95');
+                    popup.firstElementChild.classList.add('scale-100');
+                }, 10);
+            }
+
+            // 3. 팝업 닫기 로직
+            function closePopup() {
+                popup.classList.add('opacity-0');
+                popup.firstElementChild.classList.remove('scale-100');
+                popup.firstElementChild.classList.add('scale-95');
+                
+                // 애니메이션(300ms)이 끝난 후 hidden 처리
+                setTimeout(() => {
+                    popup.classList.add('hidden');
+                }, 300);
+            }
+
+            closeBtn.addEventListener('click', closePopup);
+            
+            // 팝업 바깥(어두운 배경) 클릭 시 닫기 기능
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) closePopup();
+            });
+        });
+    </script>
 </body>
 </html>
