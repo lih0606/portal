@@ -21,13 +21,14 @@
     <style>
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdfa 100%);
+            background: linear-gradient(135deg, #f0f9ff 0%, #d1fae5 100%);
+            min-height: 100vh;
         }
 
         .preview-container {
             position: relative;
             width: 100%;
-            padding-top: 60%;
+            padding-top: 50%; /* Adjusted for aspect ratio */
             overflow: hidden;
             background-color: #f8fafc;
         }
@@ -54,83 +55,78 @@
         }
     </style>
 </head>
-<body class="relative min-h-screen text-gray-800">
+<body class="flex flex-col items-center justify-center min-h-screen py-6">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7PZB4Q4"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+    <div class="max-w-6xl w-full px-6">
         
-        <!-- 헤더 영역 (이미지 삭제) -->
-        <header class="text-center mb-10 space-y-2">
-            <h1 class="text-4xl sm:text-5xl font-black tracking-tight text-indigo-900">
+        <header class="text-center mb-8 space-y-2">
+            <h1 class="text-4xl font-black tracking-tight text-indigo-900">
                 인천 방과후·돌봄
             </h1>
-            <p class="text-lg text-gray-600 font-medium">
+            <p class="text-lg text-gray-700 font-medium">
                 업무는 가볍게, 퇴근은 여유롭게! 모두를 위한 방과후·돌봄 포털입니다.
             </p>
         </header>
 
-        <!-- 사이트 카드 그리드 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
 
             <!-- 1. 서부돌봄신호등 -->
-            <a href="https://sbsignal.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-hover group block bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden border border-white shadow-sm">
+            <a href="https://sbsignal.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-hover group block bg-white/60 backdrop-blur-md rounded-2xl overflow-hidden border border-white shadow-sm">
                 <div class="preview-container border-b border-gray-100">
                     <iframe src="https://sbsignal.vercel.app/" class="preview-iframe" title="SB Signal"></iframe>
                 </div>
-                <div class="p-4">
-                    <h2 class="text-xl font-bold text-gray-800 group-hover:text-blue-600">서부돌봄신호등</h2>
+                <div class="p-4 text-center">
+                    <h2 class="text-lg font-bold text-gray-800 group-hover:text-blue-600">서부돌봄신호등</h2>
                 </div>
             </a>
 
             <!-- 2. 학생관리 -->
-            <a href="https://icnmanagement.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-hover group block bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden border border-white shadow-sm">
+            <a href="https://icnmanagement.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-hover group block bg-white/60 backdrop-blur-md rounded-2xl overflow-hidden border border-white shadow-sm">
                 <div class="preview-container border-b border-gray-100">
                     <iframe src="https://icnmanagement.vercel.app/" class="preview-iframe" title="ICN Management"></iframe>
                 </div>
-                <div class="p-4">
-                    <h2 class="text-xl font-bold text-gray-800 group-hover:text-blue-600">학생관리</h2>
+                <div class="p-4 text-center">
+                    <h2 class="text-lg font-bold text-gray-800 group-hover:text-blue-600">학생관리</h2>
                 </div>
             </a>
 
             <!-- 3. 인천늘봄현황 -->
-            <a href="https://ineulbom.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-hover group block bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden border border-white shadow-sm md:col-span-2 lg:col-span-1">
+            <a href="https://ineulbom.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-hover group block bg-white/60 backdrop-blur-md rounded-2xl overflow-hidden border border-white shadow-sm">
                 <div class="preview-container border-b border-gray-100">
                     <iframe src="https://ineulbom.vercel.app/" class="preview-iframe" title="I-Neulbom"></iframe>
                 </div>
-                <div class="p-4">
-                    <h2 class="text-xl font-bold text-gray-800 group-hover:text-blue-600">인천늘봄현황</h2>
+                <div class="p-4 text-center">
+                    <h2 class="text-lg font-bold text-gray-800 group-hover:text-blue-600">인천늘봄현황</h2>
                 </div>
             </a>
         </div>
         
-        <!-- 하단 추가 배너 영역 (높이 줄임) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-            <a href="https://www.ice.go.kr/afterschool/" target="_blank" rel="noopener noreferrer" class="bg-white/60 hover:bg-white/80 border border-blue-100 rounded-2xl p-5 shadow-sm transition-all flex items-center justify-between">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <a href="https://www.ice.go.kr/afterschool/" target="_blank" rel="noopener noreferrer" class="bg-white/50 hover:bg-white/80 border border-blue-100 rounded-xl p-3 shadow-sm transition-all flex items-center justify-between">
                 <div>
-                    <p class="text-blue-600 text-xs font-bold uppercase tracking-wider">공식 홈페이지</p>
-                    <h3 class="text-lg font-bold text-gray-800">인천늘봄지원센터</h3>
+                    <h3 class="text-md font-bold text-gray-800">인천늘봄지원센터</h3>
                 </div>
-                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </a>
 
-            <a href="https://notebooklm.google.com/notebook/14b96a04-2f73-489c-a984-00d65c5fa946" target="_blank" rel="noopener noreferrer" class="bg-white/60 hover:bg-white/80 border border-purple-100 rounded-2xl p-5 shadow-sm transition-all flex items-center justify-between">
+            <a href="https://notebooklm.google.com/notebook/14b96a04-2f73-489c-a984-00d65c5fa946" target="_blank" rel="noopener noreferrer" class="bg-white/50 hover:bg-white/80 border border-purple-100 rounded-xl p-3 shadow-sm transition-all flex items-center justify-between">
                 <div>
-                    <p class="text-purple-600 text-xs font-bold uppercase tracking-wider">AI 어시스턴트</p>
-                    <h3 class="text-lg font-bold text-gray-800">늘봄 Notebook LM</h3>
+                    <h3 class="text-md font-bold text-gray-800">늘봄 Notebook LM</h3>
                 </div>
-                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </a>
         </div>
     
-        <footer class="text-center text-sm text-gray-500 font-medium space-y-3">
-            <p>본 사이트는 개인이 운영하는 비공식 페이지입니다.</p>
-            <p>문의: <a href="mailto:leeilhak@gmail.com" class="text-blue-600 hover:underline">leeilhak@gmail.com</a></p>
-            <div class="flex justify-center">
+        <footer class="text-center text-sm text-gray-500 space-y-2">
+            <p>본 사이트는 개인이 운영하는 비공식 페이지입니다. 문의: <a href="mailto:leeilhak@gmail.com" class="text-blue-600 hover:underline font-bold">leeilhak@gmail.com</a></p>
+            <div class="flex justify-center mt-2">
                 <img src="https://hits.sh/incheon-neulbom-portal.vercel.app.svg?style=for-the-badge&label=VISITORS&color=4f46e5" alt="방문자 수" class="h-6">
             </div>
+            <p class="pt-2 text-xs">© 2026 인천 방과후·돌봄. All rights reserved.</p>
         </footer>
     </div>
 </body>
