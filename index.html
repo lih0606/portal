@@ -170,22 +170,9 @@
             
             <!-- 방문자 수 카운터 배지 추가 -->
             <div class="flex justify-center mt-4">
-                <!-- id="visitor-badge" 를 추가했습니다 -->
-                <img id="visitor-badge" src="https://komarev.com/ghpvc/?username=incheon-neulbom-portal-2026&label=VISITORS&color=4F46E5&style=for-the-badge" alt="방문자 수" class="h-6 hover:opacity-80 transition-opacity drop-shadow-sm">
+                <img src="https://hits.sh/incheon-neulbom-portal.vercel.app.svg?style=for-the-badge&label=VISITORS&color=4f46e5" alt="방문자 수" class="h-6 hover:opacity-80 transition-opacity drop-shadow-sm">
             </div>
         </footer>
     </div>
-
-    <!-- 캐시 방지(Cache-Busting) 스크립트 추가 -->
-    <script>
-        // 페이지가 로드될 때 이미지 주소 뒤에 현재 시간(난수 역할)을 붙여 
-        // 브라우저가 매번 새로운 이미지로 인식하고 새로고침하게 만듭니다.
-        window.addEventListener('DOMContentLoaded', () => {
-            const badge = document.getElementById('visitor-badge');
-            if (badge) {
-                badge.src = badge.src + '&t=' + new Date().getTime();
-            }
-        });
-    </script>
 </body>
 </html>
